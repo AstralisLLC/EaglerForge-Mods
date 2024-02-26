@@ -1,4 +1,5 @@
 ModAPI.require("player");
+ModAPI.require("settings");
 let playerFound = false;
 
 // Example condition, replace this with your actual condition
@@ -31,6 +32,14 @@ function initializeHud() {
         const font_name = new FontFace("pressStart", `url(${url_to_font_name})`);
         await font_name.load();
         document.fonts.add(font_name);
+
+        ModAPI.settings.hud24h = false
+        ModAPI.settings.hudCoords = false
+        ModAPI.settings.hudFps = false
+        ModAPI.settings.hudPlayer = false
+        ModAPI.settings.hudStats = false
+        ModAPI.settings.hudWorld = false
+        ModAPI.settings.reload();   
         
         const statDisplay = document.createElement("div");
         document.body.appendChild(statDisplay);
