@@ -1,5 +1,27 @@
-ModAPI.require("player")
-ModAPI.require("settings")
+ModAPI.require("player");
+let playerFound = false;
+
+// Example condition, replace this with your actual condition
+function checkForGame() {
+    if (typeof ModAPI.player !== 'undefined') {
+        playerFound = true;
+    } else {
+        console.log('Player doesn\'t exist yet, please join a server or singleplayer world...');
+    }
+}
+
+// Call the function
+checkForGame();
+
+// Wait until the player is found
+const intervalId = setInterval(() => {
+    if (playerFound) {
+        clearInterval(intervalId); // Stop the interval
+        ModAPI.displayToChat({msg: "§5StatsHud is now loading"})
+    } else {
+        checkForGame(); // Check again if player is found
+    }
+}, 1000);
 
 setTimeout(async function () {
     const url_to_font_name =
@@ -69,17 +91,14 @@ setTimeout(async function () {
     timeStr.style.fontSize = "14px";
     timeStr.style.marginLeft = "15px";
     function updateTime() {
-    // Get the current date
+
         const currentDate = new Date();
 
-        // Get the hours from the current date
         const hours = currentDate.getHours();
 
-        // Determine if it's AM or PM
         const period = hours < 12 ? 'AM' : 'PM';
-        timeStr.innerText = `Time: ${hours}:${currentDate.getMinutes()}:${currentDate.getSeconds()} ${period}`
+        timeStr.innerText = `Time: ${hours}:${currentDate.getMinutes()}:${currentDate.getSeconds()} \[${period}\]`
     }
-    
     
     setInterval(updateTime, 10)
     setInterval(updateZ, 10)
@@ -87,5 +106,23 @@ setTimeout(async function () {
     setInterval(updateX, 10);
     setInterval(updateFPS, 10);
 
+    let hudVisible = false;
+    statDisplay.style.visibility = hudVisible ? "visible" : "hidden";
+
+    function checkLoaded() {
+        if (document.pointerLockElement != null){
+            hudVisible = true;
+            statDisplay.style.visibility = hudVisible ? "visible" : "hidden";
+        } else {
+            hudVisible = false;
+            statDisplay.style.visibility = hudVisible ? "visible" : "hidden";
+        }
+    }
+
+    setInterval(checkLoaded, 1);
+
+    ModAPI.clientBrand = "Astralis\'s UI Loader"
     ModAPI.displayToChat({msg: "§5StatsHud has succesfully loaded!"})
 }, 50);
+
+// §
