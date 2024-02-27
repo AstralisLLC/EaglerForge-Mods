@@ -2,7 +2,6 @@ ModAPI.require("player");
 ModAPI.require("settings");
 let playerFound = false;
 
-// Example condition, replace this with your actual condition
 function checkForGame() {
     if (typeof ModAPI.player !== 'undefined') {
         playerFound = true;
@@ -11,17 +10,15 @@ function checkForGame() {
     }
 }
 
-// Call the function
 checkForGame();
 
-// Wait until the player is found
 const intervalId = setInterval(() => {
     if (playerFound) {
         clearInterval(intervalId); // Stop the interval
         ModAPI.displayToChat({msg: "§5StatsHud is now loading"})
         initializeHud();
     } else {
-        checkForGame(); // Check again if player is found
+        checkForGame();
     }
 }, 1000);
 
