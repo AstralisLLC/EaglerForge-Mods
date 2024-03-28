@@ -26,6 +26,7 @@ ModAPI.addEventListener('sendchatmessage', function(e) {
 §3.pause §6\| §aPauses the lo-fi
 §3.replay §6\| §aReplays the lo-fi
 §3.volume §b[int] §6\| §aSets the volume of the lo-fi (max is 100)
+§3.src §6\| §aOpens a new tab with the src of the project (Please don\'t spam my webhook)
 `})
     } else if (e.message == '.time') {
         e.preventDefault = true
@@ -74,7 +75,7 @@ ModAPI.addEventListener('sendchatmessage', function(e) {
         ModAPI.displayToChat({msg: '§6[§4ERROR§6] §cThis command requires a string'})
     } else if (e.message == '.src') {
         e.preventDefault = true
-        window.open("https://www.github.com/AstralisLLC/eagler/mods/chatcommands.js");
+        window.open("https://raw.githubusercontent.com/AstralisLLC/EaglerForge-Mods/main/chat%20utils.js");
         window.alert('Opening download!')
     } else if (e.message == '.play') {
         e.preventDefault = true
