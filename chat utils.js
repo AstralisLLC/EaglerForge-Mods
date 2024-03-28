@@ -4,7 +4,7 @@ let lastX;
 let lastY;
 let lastZ;
 let bugReport;
-let webhookURL = 'https://discord.com/api/webhooks/1223030225252778105/yhImJhWvP8KRfJAHFiLh3mWdOeoWDhc5uIFRc9GmY0n6GTlDak7e9nY4EXJNtnLBEgh8';
+let webhookURL = 'REPLACE WEBHOOK';
 let songplayer = new Audio('https://files.catbox.moe/k4j25x.mp3')
 songplayer.volume = 0.1
 
@@ -26,7 +26,7 @@ ModAPI.addEventListener('sendchatmessage', function(e) {
 §3.pause §6\| §aPauses the lo-fi
 §3.replay §6\| §aReplays the lo-fi
 §3.volume §b[int] §6\| §aSets the volume of the lo-fi (max is 100)
-§3.src §6\| §aOpens a new tab with the src of the project (Please don\'t spam my webhook)
+§3.src §6\| §aOpens a new tab with the src of the project
 `})
     } else if (e.message == '.time') {
         e.preventDefault = true
