@@ -7,6 +7,8 @@ let bugReport;
 let webhookURL = 'REPLACE WEBHOOK';
 let songplayer = new Audio('https://files.catbox.moe/k4j25x.mp3')
 songplayer.volume = 0.1
+let oldVolume = songplayer.volume;
+let loopToggle = false()
 
 ModAPI.addEventListener('sendchatmessage', function(e) {
 
@@ -22,11 +24,13 @@ ModAPI.addEventListener('sendchatmessage', function(e) {
 §3.goto §6\| §aAttempts to teleport to the set position
 §3.setpos §6\| §aSets the position for .goto
 §3.bugreport §b[msg] §6\| §aSends a message through a webhook
-§3.play §6\| §aPlays lo-fi (19 minutes long)
-§3.pause §6\| §aPauses the lo-fi
-§3.replay §6\| §aReplays the lo-fi
-§3.volume §b[int] §6\| §aSets the volume of the lo-fi (max is 100)
+§3.play §6\| §aPlays the song (Lo-fi by default)
+§3.pause §6\| §aPauses the song
+§3.replay §6\| §aReplays the song
+§3.volume §b[int] §6\| §aSets the volume of the song (max is 100)
 §3.src §6\| §aOpens a new tab with the src of the project
+§3.setsong §b[url] §6\| §aSets a url for the song player
+§3.loop §6\| §aToggles looping on the the song (Off by default)
 `})
     } else if (e.message == '.time') {
         e.preventDefault = true
@@ -93,10 +97,25 @@ ModAPI.addEventListener('sendchatmessage', function(e) {
         e.preventDefault = true
         try {
             songplayer.volume = (e.message.substr(8) / 100)
-            ModAPI.displayToChat({msg: '§3Volume set to '+ (e.message.substr(8) / 100)})
+            oldVolume = songplayer.volume
+            ModAPI.displayToChat({msg: '§3Volume set to '+ e.message.substr(8)})
         } catch (error) {
             ModAPI.displayToChat({msg: "§6[§4ERROR§6] §c"+error})
         }
+    } else if (e.message.startsWith('.setsong ') && e.message.substr(9).startsWith('https://')) {
+        e.preventDefault = true
+        songplayer.pause()
+        songplayer = new Audio(e.message.substr(9))
+        songplayer.volume = oldVolume
+        ModAPI.displayToChat({msg: '§3URL was set to §6[ §b' + e.message.substr(9) + ' §6]'})
+    } else if (e.message.startsWith('.setsong')) {
+        e.preventDefault = true
+        ModAPI.displayToChat({msg: '§6[§4ERROR§6] §cThis command requires a URL'})
+    } else if (e.message == '.loop') {
+        e.preventDefault = true
+        songplayer.loop = loopToggle
+        loopToggle = !loopToggle
+        ModAPI.displayToChat({msg: '§3Loop is now set to §6[ §a'+loopToggle+' §6]'})
     } else if (e.message.startsWith('.')) {
         e.preventDefault = true
         ModAPI.displayToChat({msg: '§6[§4ERROR§6] §cNo such command, use .help for available commands'})
@@ -110,9 +129,6 @@ function updateDate() {
 
 setInterval(updateDate(), 10)
 
-function bugTest(message) {
-
-}
 
 async function sendBugReport(report) {
     var request = new XMLHttpRequest();
