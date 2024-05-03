@@ -1,7 +1,5 @@
-ModAPI.require('player')
-
+ModAPI.require('player');
 let macroKey = 33;
-
 ModAPI.addEventListener('key', function(k) {
     if (k.key == macroKey) {
         let currentEquipped = ModAPI.player.getCurrentEquippedItem().toString()
@@ -14,10 +12,7 @@ ModAPI.addEventListener('key', function(k) {
             ModAPI.displayToChat({msg: `§5[§dOffHand§5] §6${item} §bis now in your OffHand!`})
         }
     }
-})
-
-
-
+});
 ModAPI.addEventListener('sendchatmessage', function(m) {
     if (m.message.startsWith('.bind')) {
         if (m.message.substr(6) != '') {
@@ -30,6 +25,4 @@ ModAPI.addEventListener('sendchatmessage', function(m) {
             }
         }
     }
-
-  
-}
+});
