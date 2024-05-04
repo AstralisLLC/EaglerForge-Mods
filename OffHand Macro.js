@@ -17,7 +17,7 @@ ModAPI.addEventListener('sendchatmessage', function(m) {
     if (m.message.startsWith('.bind')) {
         if (m.message.substr(6) != '') {
             m.preventdefault = true;
-            if (typeof macroKey == int) {
+            if (Number(macroKey) != NaN) {
                 macroKey = m.message.substr(6);
                 ModAPI.displayToChat({msg: `§5[§dOffHand§5] §bKeybind is now ser to ${macroKey}`})
             } else {
