@@ -25,11 +25,14 @@ ModAPI.addEventListener('key', function(a) {
 ModAPI.addEventListener('sendchatmessage', function(b){
     if (b.message.startsWith('.key')) {
         b.preventDefault = true
-        if (Number(b.message.substr(5)) != NaN) {
-            keybind = b.message.substr(5);
-            ModAPI.displayToChat({msg: `§5[§dFullBright§5] §bKeybind is now set to §6${keybind}`})
+        if (b.message.substr(5) != '') {
+            if (Number(b.message.substr(5) != NaN)) {
+                keybind = b.message.substr(5);
+                ModAPI.displayToChat({msg: `§5[§dFullBright§5] §bKeybind is now set to §6${keybind}`})
+            }
         } else {
-            ModAPI.displayToChat({msg: `§5[§dFullBright§5] 6[§4ERROR§6] §cInvalid key, please use a keycode from §bhttps://eaglerforge.github.io/apidocs/events/addEventListener.html`})
+            ModAPI.displayToChat({msg: `§5[§dFullBright§5] §6[§4ERROR§6] §cInvalid key, please use a keycode from the opened window!`})
+            window.open('https://eaglerforge.github.io/apidocs/events/addEventListener.html')
         }
     }
 })
