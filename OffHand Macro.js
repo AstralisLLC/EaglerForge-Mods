@@ -21,7 +21,7 @@ ModAPI.addEventListener('sendchatmessage', function(m) {
                 macroKey = m.message.substr(6);
                 ModAPI.displayToChat({msg: `§5[§dOffHand§5] §bKeybind is now ser to ${macroKey}`})
             } else {
-                ModAPI.displayToChat({msg: `§5[§dOffHand§5] '6[§4ERROR§6] §cInvalid key, please use a keycode from\n§bhttps://eaglerforge.github.io/apidocs/events/addEventListener.html`
+                ModAPI.displayToChat({msg: `§5[§dOffHand§5] '6[§4ERROR§6] §cInvalid key, please use a keycode from\n§bhttps://eaglerforge.github.io/apidocs/events/addEventListener.html`})
             }
         }
     }
