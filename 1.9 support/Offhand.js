@@ -8,9 +8,9 @@ ModAPI.addEventListener('key', function(k) {
         let item = shortened.slice(0, -2)
         ModAPI.player.sendChatMessage({message: `${ohCmd}`})
         if (item == 'horsearmorgold') {
-            ModAPI.displayToChat({msg: `§5[§dOffHand§5] §6Totem §bis §bnow §bin §byour §bOffHand!`})
+            ModAPI.displayToChat({msg: `§5[§dOffHand§5] §6Totem §bis now in your OffHand!`})
         } else {
-            ModAPI.displayToChat({msg: `§5[§dOffHand§5] §6${item} §bis §bnow §bin §byour §bOffHand!`})
+            ModAPI.displayToChat({msg: `§5[§dOffHand§5] §6${item} §bis now in your OffHand!`})
         }
     }
 });
@@ -18,22 +18,22 @@ ModAPI.addEventListener('sendchatmessage', function(m) {
     if (m.message.startsWith('.bind')) {
         if (m.message.substr(6) != '') {
             if (Number(macroKey) != NaN) {
-                m.preventdefault = true
+                m.preventDefault = true
                 macroKey = m.message.substr(6);
-                ModAPI.displayToChat({msg: `§5[§dOffHand§5] §bKeybind §bis §bnow §bset §bto §b${macroKey}`})
+                ModAPI.displayToChat({msg: `§5[§dOffHand§5] §bKeybind is now set to §6${macroKey}`})
             } else {
-                m.preventdefault = true
-                ModAPI.displayToChat({msg: `§5[§dOffHand§5] '6[§4ERROR§6] §cInvalid §ckey, §cplease §cuse §ca §ckeycode §cfrom §bhttps://eaglerforge.github.io/apidocs/events/addEventListener.html`})
+                m.preventDefault = true
+                ModAPI.displayToChat({msg: `§5[§dOffHand§5] '6[§4ERROR§6] §cInvalid key, please use a keycode from §bhttps://eaglerforge.github.io/apidocs/events/addEventListener.html`})
             }
         }
     } else if (m.message.startsWith('.cmd')) {
         if (m.message.substr(5).startsWith('/')) {
-            m.preventdefault = true
+            m.preventDefault = true
             ohCmd = m.message.substr(5)
-            ModAPI.displayToChat({msg: `§5[§dOffHand§5] §bCommand §bis §bnow §bset §bto §b${ohCmd}`})
+            ModAPI.displayToChat({msg: `§5[§dOffHand§5] §bCommand is now set to §6${ohCmd}`})
         } else {
-            m.preventdefault = true
-            ModAPI.displayToChat({msg: `§5[§dOffHand§5] '6[§4ERROR§6] §cInvalid §cinput, §cplease §cremember §cto §cinclude  §cthe §c\'/\'`})
+            m.preventDefault = true
+            ModAPI.displayToChat({msg: `§5[§dOffHand§5] §6[§4ERROR§6] §cInvalid input, please remember toinclude the\'/\'`})
         }
     }
 });
