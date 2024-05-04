@@ -1,16 +1,17 @@
-let oldLight = ModAPI.blocks.air.lightValue;
+ModAPI.require('settings')
+let oldLight = ModAPI.settings.gammaSetting;
 let toggled = false;
 let keybind = 38;
 // Keybind is L by default
 
 function toggle() {
     if (toggled == true) {
-        ModAPI.blocks.air.lightValue = 10;
-        ModAPI.blocks.air.reload();
+        ModAPI.settings.gammaSetting = 1000
+        ModAPI.settings.reload()
         toggled = false
     } else if (toggled == false) {
-        ModAPI.blocks.air.lightValue = oldLight;
-        ModAPI.blocks.air.reload();
+        ModAPI.settings.gammaSetting = oldLight
+        ModAPI.settings.reload()
         toggled = true
     }
 };
