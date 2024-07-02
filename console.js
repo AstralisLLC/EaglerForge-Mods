@@ -22,7 +22,7 @@ function CustomConsole() {
         this.object.style.color = `rgb(${txtClr})`;
         this.object.style.borderRadius = borderRadius + 'px';
         if (borderClr.startsWith('#')) {
-            this.object.style.border = `2px solid ${borderColor}`;
+            this.object.style.border = `2px solid ${borderClr}`;
         } else if (borderClr.startsWith('rgb(')) {
             this.object.style.border = `2px solid ${borderColor}`;
         } else {
