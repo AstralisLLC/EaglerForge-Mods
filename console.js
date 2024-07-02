@@ -37,9 +37,16 @@ function CustomConsole() {
         document.body.appendChild(this.object);
     }
 
+    this.createLogElement = function(msg, color) {
+        const logElement = document.createElement('p');
+        logElement.style.color = color;
+        logElement.innerText = msg;
+        this.object.appendChild(logElement);
+    }
+
     this.log = function(msg) {
         if (this.object) {
-            this.object.innerText = `[LOG] ${msg}`;
+            this.createLogElement(`[LOG] ${msg}`, 'CadetBlue');
         } else {
             console.error('No object created yet. Call create() first.');
         }
@@ -47,7 +54,7 @@ function CustomConsole() {
 
     this.warn = function(msg) {
         if (this.object) {
-            this.object.innerText = `[WARN] ${msg}`;
+            this.createLogElement(`[WARN] ${msg}`, 'orange');
         } else {
             console.error('No object created yet. Call create() first.');
         }
@@ -55,7 +62,7 @@ function CustomConsole() {
         
     this.fatal = function(msg) {
         if (this.object) {
-            this.object.innerText = `[FATAL] ${msg}`;
+            this.createLogElement(`[FATAL] ${msg}`, 'red');
         } else {
             console.error('No object created yet. Call create() first.');
         }
@@ -63,7 +70,7 @@ function CustomConsole() {
 
     this.debug = function(msg) {
         if (this.object) {
-            this.object.innerText = `[DEBUG] ${msg}`;
+            this.createLogElement(`[DEBUG] ${msg}`, 'white');
         } else {
             console.error('No object created yet. Call create() first.');
         }
