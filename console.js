@@ -12,6 +12,8 @@ function CustomConsole() {
 
         this.object = document.createElement('div');
         this.object.style.position = 'absolute';
+        this.object.style.display = 'flex';
+        this.object.style.flexDirection: 'column';
         this.object.style.paddingLeft = '10px';
         this.object.style.paddingRight = '10px';
         this.object.style.paddingTop = '10px';
