@@ -5,6 +5,7 @@ function CustomConsole() {
         console.log(`Desired color: rgb(${clr})`);
         console.log(`Desired text color: rgb(${txtClr})`);
         console.log(`Desired Border Radius: ${borderRadius}px`);
+        console.log(`Desired Border Color: ${borderClr}`);
         console.log(`Desired Width: ${width}px`);
         console.log(`Desired Height: ${height}px`);
         console.log(`Desired ID: ${id}`);
@@ -24,10 +25,10 @@ function CustomConsole() {
         if (borderClr.startsWith('#')) {
             this.object.style.border = `2px solid ${borderClr}`;
         } else if (borderClr.startsWith('rgb(')) {
-            this.object.style.border = `2px solid ${borderColor}`;
+            this.object.style.border = `2px solid ${borderClr}`;
         } else {
             console.log(`No borderClr attribute, assuming rgb() format`)
-            this.object.style.border = `2px solid rgb(${borderColor})`;
+            this.object.style.border = `2px solid rgb(${borderClr})`;
         }
         this.object.style.width = width + 'px';
         this.object.style.height = height + 'px';
@@ -38,7 +39,31 @@ function CustomConsole() {
 
     this.log = function(msg) {
         if (this.object) {
-            this.object.innerText = `> ${msg}`;
+            this.object.innerText = `[LOG] ${msg}`;
+        } else {
+            console.error('No object created yet. Call create() first.');
+        }
+    }
+
+    this.warn = function(msg) {
+        if (this.object) {
+            this.object.innerText = `[WARN] ${msg}`;
+        } else {
+            console.error('No object created yet. Call create() first.');
+        }
+    }
+        
+    this.fatal = function(msg) {
+        if (this.object) {
+            this.object.innerText = `[FATAL] ${msg}`;
+        } else {
+            console.error('No object created yet. Call create() first.');
+        }
+    }
+
+    this.debug = function(msg) {
+        if (this.object) {
+            this.object.innerText = `[DEBUG] ${msg}`;
         } else {
             console.error('No object created yet. Call create() first.');
         }
