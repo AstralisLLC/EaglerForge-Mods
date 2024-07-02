@@ -1,3 +1,5 @@
+let logCount = 0;
+
 function CustomConsole() {
     this.create = function(x, y, clr, txtClr, borderRadius, borderClr, width, height, id) {
         console.log(`Desired X: ${x}px`);
@@ -13,7 +15,8 @@ function CustomConsole() {
         this.object = document.createElement('div');
         this.object.style.position = 'absolute';
         this.object.style.display = 'flex';
-        this.object.style.flexDirection: 'column';
+        this.object.style.flexDirection = 'column';
+        this.object.style.alignContent = 'bottom';
         this.object.style.paddingLeft = '10px';
         this.object.style.paddingRight = '10px';
         this.object.style.paddingTop = '10px';
@@ -40,10 +43,16 @@ function CustomConsole() {
     }
 
     this.createLogElement = function(msg, color) {
+        logCount += 1;
         const logElement = document.createElement('p');
         logElement.style.color = color;
         logElement.innerText = msg;
+        logElement.id = `log${logCount}`;
         this.object.appendChild(logElement);
+
+        if (logCount >= 7) {
+            document.getElementById(`log${logCount - 6}`).remove();
+        }
     }
 
     this.log = function(msg) {
